@@ -150,6 +150,7 @@ namespace Taller1U3
             this.picCanvas.Size = new System.Drawing.Size(476, 377);
             this.picCanvas.TabIndex = 0;
             this.picCanvas.TabStop = false;
+            this.picCanvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picCanvas_MouseClick);
             // 
             // btnDraw
             // 

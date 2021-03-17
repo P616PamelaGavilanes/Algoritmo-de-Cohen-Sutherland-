@@ -32,5 +32,11 @@ namespace Taller1U3
         {
 
         }
+
+        private void picCanvas_MouseClick(object sender, MouseEventArgs e)
+        {
+            objC.pounts(picCanvas,e);
+
+        }
     }
 }

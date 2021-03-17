@@ -8,15 +8,19 @@ using System.Drawing;
 
 namespace Taller1U3
 {
-    class CEcuacion
+    class Linea{
+        private int x1, x2, y1, y2;
+            }
+class CEcuacion
     {
+       
         //datos miembro 
         private int msix, msiy, midx, midy;
         //graficos
         private Graphics mGraphics;
         private int SF = 10;
         private int mWhidth, mHeight;
-        private Pen mPen,mPen1;
+        private Pen mPen, mPen1,mPen2;
         private int xc, yc;
 
         public int Msix { get => msix; set => msix = value; }
@@ -62,35 +66,52 @@ namespace Taller1U3
         }
         public void GraphLines(PictureBox picCanvas)
         {
-            float[] dashValues = {1,1,1,1};
+            float[] dashValues = { 1, 1, 1, 1 };
             mGraphics = picCanvas.CreateGraphics();
             mPen = new Pen(Color.Black, 1);
+            mPen2 = new Pen(Color.Blue, 2);
             mPen.DashPattern = dashValues;
             xc = mWhidth / 2;
             yc = mHeight / 2;
-            int x1 = msix + xc,x2 = midx + xc, y1 = yc - msiy,y2 = yc - midy;
+            int x1 = msix + xc, x2 = midx + xc, y1 = yc - msiy, y2 = yc - midy;
             //vertical
             //mGraphics.ScaleTransform(3F,3F);
             // mGraphics.DrawLine(mPen, xc, 0, xc, mHeight);
             //Linea V superior
-            mGraphics.DrawLine(mPen,x1,0,x1,mHeight);
+            mGraphics.DrawLine(mPen, x1, 0, x1, mHeight);
             //Linea H superior
-            mGraphics.DrawLine(mPen,0,y1,mWhidth,y1);
+            mGraphics.DrawLine(mPen, 0, y1, mWhidth, y1);
             //Linea V inferior
-            mGraphics.DrawLine(mPen,x2,0,x2,mHeight);
+            mGraphics.DrawLine(mPen, x2, 0, x2, mHeight);
             //Linea H inferior
-            mGraphics.DrawLine(mPen, 0,y2, mWhidth,y2);
-            //mGraphics.DrawRectangle(mPen, x1,y1, 1, 1);
+            mGraphics.DrawLine(mPen, 0, y2, mWhidth, y2);
+            //puntos
+            mGraphics.DrawRectangle(mPen2, x1,y1, 1, 1);
+            mGraphics.DrawRectangle(mPen2, x2, y2, 1, 1);
             //No entrecortadas //Area
             mPen1 = new Pen(Color.Green, 1);
             //Horizontal Izquierda
-            mGraphics.DrawLine(mPen1,x1,y1,x1,y2);
+            mGraphics.DrawLine(mPen1, x1, y1, x1, y2);
             //Horizontal Derecha
-            mGraphics.DrawLine(mPen1,x2,y1,x2,y2);
+            mGraphics.DrawLine(mPen1, x2, y1, x2, y2);
             //vertical arriba 
             mGraphics.DrawLine(mPen1, x1, y1, x2, y1);
             //vertical abajo
             mGraphics.DrawLine(mPen1, x1, y2, x2, y2);
         }
+        public void pounts(PictureBox picCanvas,  MouseEventArgs e)
+        {
+            mGraphics = picCanvas.CreateGraphics();
+            mPen = new Pen(Color.Black, 1);
+            xc = mWhidth / 2;
+            yc = mHeight / 2;
+            int x1 = msix + xc, x2 = midx + xc, y1 = yc - msiy, y2 = yc - midy;
+            List<Linea> lineas = new List<Linea>();
+            mGraphics.DrawRectangle(mPen, e.X, e.Y, 1, 1);
+
+            //mGraphics.DrawLines();
+        }
     }
+
 }
+
